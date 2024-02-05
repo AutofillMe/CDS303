@@ -21,5 +21,6 @@ def sort(list):
 
 randlist = np.random.randint(1, 100, 20)
 sorted = sort(randlist)
+print(randlist)
 print(sorted)
 help(sort)
