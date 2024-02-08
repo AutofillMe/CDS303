@@ -1,3 +1,16 @@
+# I will be using the Visual Studio Code extension called Better Comments for my code.
+# If you are also using VS Code I highly recommend you get the extension as well.
+
+# For example:
+# Regular Comment
+# * Highlighted Comment
+# ! Error Comment
+# ? Question Comment
+# TODO: Comment
+# //Grossed Out Comment
+
+# Join the discord: https://discord.gg/6BdusdsB
+
 import numpy as np
 
 def sort(list):
@@ -24,5 +37,3 @@ sorted = sort(randlist)
 print(randlist)
 print(sorted)
 help(sort)
-
-# test
