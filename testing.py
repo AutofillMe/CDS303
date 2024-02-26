@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 def sort(list):
     """
@@ -19,8 +20,12 @@ def sort(list):
     list = sort(left) + pivot + sort(right)
     return list
 
-randlist = np.random.randint(1, 100, 20)
+randlist = np.random.randint(1, 100, 2000)
+start = time.perf_counter()
 sorted = sort(randlist)
-print(randlist)
-print(sorted)
+end =  time.perf_counter()
+duration = end - start
+print(f"Quicksort took {duration:.4f} seconds.")
+print(randlist[:20])
+print(sorted[:20])
 help(sort)
