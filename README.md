@@ -1,17 +1,22 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AutofillMe/CDS303/HEAD)
 
 # CDS303
+
 ---
+
 Stuff for GMU CDS 303-001
 
 ## Note
+
 ---
+
 I will be using the Visual Studio Code extension called Better Comments for my code. If you are also using VS Code I highly recommend you get the extension as well.
 
 ### How To Sync To This Repo
+
 ---
 
-I will be using `git` from the command line to do this.  For those on VS Code, there is a function already built in for cloning from a github repo when you open VS Code, so do that if you can and ignore this.
+I will be using `git` from the command line to do this. For those on VS Code, there is a function already built in for cloning from a github repo when you open VS Code, so do that if you can and ignore this.
 
 OTHERWISE:
 
@@ -23,6 +28,7 @@ In a folder of your choosing on your system, open a terminal window at the folde
 For example type: `cd C:\Users\username\Desktop` for Windows or `cd /Users/username/Desktop` for Mac.
 
 Type this command and hit enter.
+
 ```
 git clone https://github.com/AutofillMe/CDS303/
 ```
@@ -32,24 +38,38 @@ Change your terminal directory to the newly created folder with:\
 
 #### Working In the Repo
 
-Run this every time you start working on any file.\
-While inside the folder, type:
+Create a .gitignore file inside the repo folder.
+
+```
+touch .gitignore
+```
+
+Inside the .gitignore file, add:
+
+```
+.gitignore
+<your_file>.py
+<your_file2>.txt
+```
+
+Use your own temporary files to test your changes, then before commiting, run:
+
 ```
 git pull
 ```
+
 To make sure you're up to date with the repo.
 
-Then, add the file you are working on to stage and track changes with:
-```
-git add <FILENAME>
-```
+Then copy paste your changes into the main document.
 
 Once you're ready to commit a change locally (It takes a local snapshot of any file(s) you tracked changes with):
+
 ```
 git commit -m "<MESSAGE>"
 ```
 
 Once you're ready to push the files to the repo (Update any changes made locally to the cloud):
+
 ```
 git push
 ```
