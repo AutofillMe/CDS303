@@ -65,13 +65,31 @@ print(countNAN.sum())
 
 temp = input()
 
-print(df_phish.tail(20))
-# Adding "Is_Response" feature
-df_phish["Is_Response"] = None
-# Looping over the DataFrame to determine "Is_Response"
-for i in range(df_phish.shape[0]):
-    has_re = re.search("re :", df_phish.iloc[i]["Email Text"])
-    df_phish.at[i, "Is_Response"] = bool(has_re)
-print(df_phish.tail(20))
+# print(df_phish.tail(20))
+# # Adding "Is_Response" feature
+# df_phish["Is_Response"] = None
+# # Looping over the DataFrame to determine "Is_Response"
+# for i in range(df_phish.shape[0]):
+#     has_re = re.search("re :", df_phish.iloc[i]["Email Text"])
+#     df_phish.at[i, "Is_Response"] = bool(has_re)
+# print(df_phish.tail(20))
 
-df_phish["Is_Response"].value_counts(normalize=True)
+# df_phish["Is_Response"].value_counts(normalize=True)
+
+print(df_phish.tail(5))
+
+df_phish["Email_Length"] = df_phish["Email Text"].str.len()
+
+print(df_phish.tail(5))
+
+temp = input()
+
+df_phish["Has_WebLink"] = df_phish["Email Text"].str.contains("(https?://|www\.)")
+
+print(df_phish.tail(5))
+
+temp = input()
+
+df_phish["Is_Response"] = df_phish["Email Text"].str.contains("re :")
+
+print(df_phish.tail(5))
