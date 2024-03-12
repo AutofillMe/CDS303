@@ -13,83 +13,61 @@ import re
 
 import pandas as pd
 
-# Reading in the data
-df_phish = pd.read_csv("Phishing_Email.csv")
-# Dropping the unecessary index row
-df_phish = df_phish.drop(df_phish.columns[0], axis=1)
-# checking that it read in correctly
-df_phish[0:10]
 
-NullCount = df_phish["Email Text"].isnull().sum()
-print("Nulls:", NullCount)
-# Check for null values in the "Email Text" column
-null_mask = df_phish["Email Text"].isnull()
+def make_df():
+    # Reading in the data
+    df = pd.read_csv("Phishing_Email.csv")
+    # Dropping the unecessary index row
+    df = df.drop(df.columns[0], axis=1)
 
-# If there are null values, drop the corresponding rows
-if null_mask.any():
-    df_phish = df_phish.drop(df_phish[null_mask].index)
-# Checking if null values were dropped
-NullCount = df_phish["Email Text"].isnull().sum()
-print("Nulls:", NullCount)
+    # Removing Nulls
+    # Check for null values in the "Email Text" column
+    null_mask = df["Email Text"].isnull()
 
-# Visual Inspection
-print(df_phish.head(10))
-print(df_phish.tail(20))
+    # If there are null values, drop the corresponding rows
+    if null_mask.any():
+        df = df.drop(df[null_mask].index)
 
-temp = input()
+    # Remove 'empty' emails from the dataframe
+    df_cleaned = df[df["Email Text"].str.lower() != "empty"]
+    df = df_cleaned
 
-# Check if each "Email Text" is type string
-print(df_phish.shape)
-# Check if each "Email Text" is type string
-is_string = df_phish["Email Text"].apply(lambda x: isinstance(x, str))
-print("Number of non-string values in 'Email Text':", (~is_string).sum())
-print(df_phish.shape)
+    return df
 
-temp = input()
 
-# Get count of 'empty' emails
-empty_email_count = df_phish["Email Text"].str.lower().eq("empty").sum()
-print(f"Number of 'empty' emails: {empty_email_count}")
-# Remove those 'empty' emails from the dataframe
-df_phish_cleaned = df_phish[df_phish["Email Text"].str.lower() != "empty"]
-df_phish_cleaned.shape
-empty_email_count = df_phish_cleaned["Email Text"].str.lower().eq("empty").sum()
-print(f"Number of 'empty' emails: {empty_email_count}")
-df_phish = df_phish_cleaned
-
-temp = input()
-
-print(df_phish.tail(5))
-countNAN = df_phish["Email Text"] == "NaN"
-print(countNAN.sum())
-
-temp = input()
-
-# print(df_phish.tail(20))
-# # Adding "Is_Response" feature
-# df_phish["Is_Response"] = None
-# # Looping over the DataFrame to determine "Is_Response"
-# for i in range(df_phish.shape[0]):
-#     has_re = re.search("re :", df_phish.iloc[i]["Email Text"])
-#     df_phish.at[i, "Is_Response"] = bool(has_re)
-# print(df_phish.tail(20))
-
-# df_phish["Is_Response"].value_counts(normalize=True)
-
-print(df_phish.tail(5))
+df_phish = make_df()
 
 df_phish["Email_Length"] = df_phish["Email Text"].str.len()
 
-print(df_phish.tail(5))
-
-temp = input()
-
-df_phish["Has_WebLink"] = df_phish["Email Text"].str.contains("(https?://|www\.)")
-
-print(df_phish.tail(5))
-
-temp = input()
+df_phish["Has_WebLink"] = df_phish["Email Text"].str.contains(
+    "(https?://|www.|.com|.org|.net)"
+)
 
 df_phish["Is_Response"] = df_phish["Email Text"].str.contains("re :")
 
-print(df_phish.tail(5))
+df_phish["Hypen_Count"] = df_phish["Email Text"].str.count(r"-")
+df_phish["Pound_Count"] = df_phish["Email Text"].str.count(r"#")
+df_phish["At_Count"] = df_phish["Email Text"].str.count(r"@")
+df_phish["Exclamation_Count"] = df_phish["Email Text"].str.count(r"!")
+df_phish["Question_Count"] = df_phish["Email Text"].str.count(r"\?")
+df_phish["Period_Count"] = df_phish["Email Text"].str.count(r"\.")
+
+
+def percent_of_all_caps(text):
+    if not text or not isinstance(text, str):
+        return 0
+    # getting rid of special characters from check for all-caps
+    alphanumeric_text = re.sub(r"[^A-Za-z0-9]", "", text)
+    num_all_caps = sum(1 for c in alphanumeric_text if c.isupper())
+    num_total_characters = len(alphanumeric_text)
+    # prevent divide by 0
+    if num_total_characters == 0:
+        return 0
+    percent_all_caps = (num_all_caps / num_total_characters) * 100
+    return percent_all_caps
+
+
+# creating a new column in dataframe for percentage of capitalization and marking emails as safe or phishing
+df_phish["Capitalization_Percent"] = df_phish["Email Text"].apply(percent_of_all_caps)
+
+print(df_phish.columns.values.tolist())
