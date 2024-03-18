@@ -13,5 +13,5 @@ flowchart LR
     id2 --> id4
     id3 --> id4
     id5 --> id4
-    id4 --> id8((Output:\nSafe vs Unsafe))
+    id4 --> id8((Output:\n Risk Score))
 ```
