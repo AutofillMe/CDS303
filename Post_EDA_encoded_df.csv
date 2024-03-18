@@ -1,4 +1,4 @@
-Sentiment_Score,Is_Response,Has_WebLink,Email_Length,accentChar_count,accentChar_percentage,Hyphen_Count,Pound_Count,At_Count,Exclamation_Count,Question_Count,Period_Count,Exclamation_Percentage,Question_Percentage,Period_Percentage,Hyphen_Percentage,Pound_Percentage,At_Percentage,Capitalization_Percent,Safe_Email
+Sentiment_Score,Is_Response,Has_WebLink,Email_Length,accentChar_Count,accentChar_percentage,Hyphen_Count,Pound_Count,At_Count,Exclamation_Count,Question_Count,Period_Count,Exclamation_Percentage,Question_Percentage,Period_Percentage,Hyphen_Percentage,Pound_Percentage,At_Percentage,Capitalization_Percent,Safe_Email
 0.9798,True,False,1030,0,0.0,1,0,0,2,0,7,0.1941747572815534,0.0,0.6796116504854369,0.0970873786407767,0.0,0.0,0.0,1
 0.4329,False,False,479,0,0.0,0,0,1,0,2,4,0.0,0.4175365344467641,0.8350730688935282,0.0,0.0,0.20876826722338204,0.0,1
 0.8591,True,False,1245,0,0.0,51,2,3,0,1,6,0.0,0.08032128514056225,0.4819277108433735,4.096385542168675,0.1606425702811245,0.24096385542168675,0.0,1
