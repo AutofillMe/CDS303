@@ -3,5 +3,5 @@ pandas
 seaborn
 mlxtend
 matplotlib
-pathllib
+pathlib
 sklearn
