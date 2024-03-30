@@ -4,4 +4,4 @@ seaborn
 mlxtend
 matplotlib
 pathlib
-sklearn
+scikit-learn
