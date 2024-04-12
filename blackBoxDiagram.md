@@ -7,11 +7,11 @@ flowchart LR
     id5(Sentiment: Positive or Negative)
     subgraph sb [Black Box]
         direction LR
-        id4{{\n\nLinear Regression\n\n\n}}        
+        id4{{\n\Logistic Regression\n\n\n}}        
     end
     id1 --> id4
     id2 --> id4
     id3 --> id4
     id5 --> id4
-    id4 --> id8((Output:\n Risk Score))
+    id4 --> id8((Output:\n Phishing/Spam or Safe))
 ```
