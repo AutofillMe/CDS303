@@ -15,7 +15,7 @@ import string
 
 def make_df():
     # Reading in the data
-    df = pandas.read_csv("Phishing_Email.csv")
+    df = pandas.read_csv("../CDS303/CSV Files/Phishing_Email.csv")
     # Dropping the unecessary index row
     df = df.drop(df.columns[0], axis=1)
     
