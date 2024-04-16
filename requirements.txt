@@ -3,5 +3,7 @@ pandas
 seaborn
 mlxtend
 matplotlib
-pathlib
 scikit-learn
+nltk
+wordcloud
+pathlib
